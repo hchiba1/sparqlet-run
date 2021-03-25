@@ -1,1 +1,1 @@
-# sparqlet-run
+# SPARQLet runner
