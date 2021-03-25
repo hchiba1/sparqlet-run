@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/hchiba1/sparqlet-runner/issues"
   },
-  "homepage": "https://github.com/hchiba1/sparqlet-runner#readme"
+  "homepage": "https://github.com/hchiba1/sparqlet-runner#readme",
+  "dependencies": {
+    "commander": "^7.2.0"
+  },
+  "bin": {
+    "sparqlet": "bin/sparqlet.js"
+  }
 }
