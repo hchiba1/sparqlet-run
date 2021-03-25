@@ -1,0 +1,20 @@
+{
+  "name": "sparqlet-runner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hchiba1/sparqlet-runner.git"
+  },
+  "keywords": [],
+  "author": "Hirokazu Chiba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hchiba1/sparqlet-runner/issues"
+  },
+  "homepage": "https://github.com/hchiba1/sparqlet-runner#readme"
+}
