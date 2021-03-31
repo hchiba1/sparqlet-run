@@ -1,6 +1,6 @@
 # sparqlet-run
 ## 概要
-https://github.com/dbcls/sparqlist の lib/ を利用、bin/sparqlet-run.mjs を新たに記述.
+https://github.com/dbcls/sparqlist の lib/\*.mjs を利用、bin/sparqlet-run.mjs を新たに記述.
 ```
 sparqlet-run example.md
 ```
