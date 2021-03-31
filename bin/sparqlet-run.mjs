@@ -15,7 +15,7 @@ program
   .option('-t, --trace', 'output traces')
   .option('--tsv', 'output in tsv')
   .option('-c, --column', 'align columns of tsv')
-  .option('-d, --debug', 'show SPARQLet content and quit')
+  .option('-s, --show', 'show internal SPARQLet object')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
 
@@ -48,7 +48,7 @@ try {
       }
     }
   });
-  if (opts.debug) {
+  if (opts.show) {
     console.log(sparqlet);
     process.exit(0);
   }
