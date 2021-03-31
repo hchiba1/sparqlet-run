@@ -30,6 +30,10 @@ $ sparqlet-run homologene_category.md categoryIds=1
 [ { categoryId: '1', label: 'human', count: 172 } ]
 385 ms
 ```
+エンドポイントを変えて実行
+```
+$ sparqlet-run homologene_category.md -e https://integbio.jp/togosite/sparql
+```
 繰り返し(時間測定のみ)
 ```
 $ sparqlet-run homologene_category.md -n 3
@@ -51,11 +55,9 @@ $ sparqlet-run homologene_category.md --tsv
 categoryId      label   count
 1       human   172
 2       chimpanzee      560
-3       primates        498
-4       mouse, rat      285
 ...
 ```
-さらにカラムを揃える(beta)
+カラムを揃える(beta)
 ```
 $ sparqlet-run homologene_category.md -c
 categoryId label        count
