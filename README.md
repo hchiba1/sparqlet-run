@@ -48,13 +48,13 @@ ES6 Modulesを利用しているため、Node.js v14以上推奨.
 $ cd sparqlet-run
 $ npm install
 ```
-パスに入れるためには、続けて `$ npm link` する.
+パスに入れるためには、続けて `$ npm link` .
 
 ## Usage
 ```
 $ ./bin/sparqlet-run.mjs example.md
 ```
-もしくは、`$ npm link` してあれば
+もしくは、`$ npm link` してあれば、
 ```
 $ sparqlet-run example.md
 ```
