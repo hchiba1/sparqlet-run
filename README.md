@@ -70,7 +70,7 @@ categoryId label        count
 ```
 $ npm install
 ```
-パスに入れるために、続けて `$ npm link` する.
+パスに入れるためには、続けて `$ npm link` する.
 
 ## Usage
 ```
