@@ -54,7 +54,7 @@ $ npm install
 ```
 $ ./bin/sparqlet-run.mjs example.md
 ```
-`$ npm link` してあれば
+もしくは、`$ npm link` してあれば
 ```
 $ sparqlet-run example.md
 ```
