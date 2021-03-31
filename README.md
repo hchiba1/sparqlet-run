@@ -30,7 +30,7 @@ $ sparqlet-run homologene_category.md categoryIds=1
 [ { categoryId: '1', label: 'human', count: 172 } ]
 385 ms
 ```
-エンドポイントを変えて実行:
+エンドポイントを一時的に変えて実行してみる:
 ```
 $ sparqlet-run homologene_category.md -e https://integbio.jp/togosite/sparql
 ```
