@@ -54,6 +54,7 @@ total   input_genes:js  input_branch:js main:sparql     return:js
 $ sparqlet-run homologene_category.md --tsv
 categoryId      label   count
 1       human   172
+2       chimpanzee      560
 ...
 ```
 カラムを揃える(beta):
@@ -61,6 +62,7 @@ categoryId      label   count
 $ sparqlet-run homologene_category.md -c
 categoryId label        count
 1          human        172
+2          chimpanzee   560
 ...
 ```
 
