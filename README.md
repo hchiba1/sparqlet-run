@@ -1,5 +1,5 @@
 # sparqlet-run
-## 概要
+
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
 ```
 $ sparqlet-run example.md
