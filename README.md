@@ -41,30 +41,6 @@ $ sparqlet-run homologene_category.md -n 3
 304 ms
 305 ms
 ```
-トレースした時間の取得:
-```
-$ sparqlet-run homologene_category.md -n3 -t
-total   input_genes:js  input_branch:js main:sparql     return:js
-364 ms  1 ms    1 ms    361 ms  1 ms
-300 ms  0 ms    1 ms    298 ms  1 ms
-217 ms  1 ms    1 ms    213 ms  2 ms
-```
-タブ区切り出力(beta):
-```
-$ sparqlet-run homologene_category.md --tsv
-categoryId      label   count
-1       human   172
-2       chimpanzee      560
-...
-```
-カラムを揃える(beta):
-```
-$ sparqlet-run homologene_category.md -c
-categoryId label        count
-1          human        172
-2          chimpanzee   560
-...
-```
 
 ## Install
 ES6 Modulesを利用しているため、Node.js v14以上推奨.
