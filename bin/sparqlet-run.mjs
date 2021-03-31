@@ -1,13 +1,10 @@
 #!/usr/bin/env node
-// import { promises as fs } from 'fs';
 import fs from 'fs/promises';
 import path from 'path';
 import program from 'commander';
 import columnify from 'columnify';
 import csvParse from 'csv-parse/lib/sync.js';
-
 import SPARQLet from '../lib/sparqlet.mjs';
-import SPARQLetParser from '../lib/parser.mjs';
 
 program
   .option('-e, --endpoint <ENDPOINT>', 'change target endpoint')
