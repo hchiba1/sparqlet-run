@@ -39,7 +39,7 @@ $ sparqlet-run homologene_category.md -n 3
 ```
 
 ## Install
-ES6 Modulesを利用しているため、Node.js v14以上推奨.
+ES6 Modulesを利用しているため、Node.js v14以上.
 ```
 $ cd sparqlet-run
 $ npm install
