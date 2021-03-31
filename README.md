@@ -1,10 +1,6 @@
 # sparqlet-run
 
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
-```
-$ sparqlet-run example.md
-```
-のように、ローカルにあるmdファイルを実行し、結果を確認.
 
 ## Example
 ```
@@ -52,9 +48,9 @@ $ npm install
 
 ## Usage
 ```
-$ ./bin/sparqlet-run.mjs example.md
+$ ./bin/sparqlet-run.mjs
 ```
 もしくは、`$ npm link` してあれば、
 ```
-$ sparqlet-run example.md
+$ sparqlet-run
 ```
