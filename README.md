@@ -64,7 +64,6 @@ categoryId label        count
 1          human        172
 2          chimpanzee   560
 ...
-```
 
 ## Install
 ```
