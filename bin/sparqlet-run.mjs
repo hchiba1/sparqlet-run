@@ -38,13 +38,13 @@ try {
       }
     });
   }
-  sparqlet.procedures.forEach((elem) => {
-    if (elem.type === 'sparql') {
-      if (opts.endpoint) {
+  if (opts.endpoint) {
+    sparqlet.procedures.forEach((elem) => {
+      if (elem.type === 'sparql') {
         elem.endpoint = opts.endpoint;
       }
-    }
-  });
+    });
+  }
   if (opts.show) {
     console.log(sparqlet);
     process.exit(0);
@@ -91,8 +91,7 @@ async function measureTime(sparqlet, params, i) {
   const ret = await sparqlet.execute(params);
 
   if (i === 0 && opts.trace) {
-    let header = [];
-    header.push('total');
+    let header = ['total'];
     ret.traces.forEach((trace) => {
       if (trace.step.type === 'sparql') {
         header.push(`${trace.step.bindingName}:sparql`);
@@ -105,8 +104,7 @@ async function measureTime(sparqlet, params, i) {
     console.log(header.join('\t'));
   }
   
-  let out = [];
-  out.push(`${ret.elapsed} ms`);
+  let out = [`${ret.elapsed} ms`];
   if (opts.trace) {
     ret.traces.forEach((trace) => {
       out.push(`${trace.elapsed} ms`);
@@ -122,7 +120,6 @@ function jsonToTsv(json) {
     tsv += json.map((line) => {
       return keys.map(key => line[key]).join('\t');
     }).join('\n');
-
     return tsv;
   } else {
     return json.join('\n');
