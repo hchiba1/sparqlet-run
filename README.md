@@ -4,7 +4,7 @@ https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet
 ```
 $ sparqlet-run example.md
 ```
-のように、ローカルにあるmdファイルを実行し、結果を確認する.
+のように、ローカルにあるmdファイルを実行し、結果を確認できます.
 
 ## Example
 ```
