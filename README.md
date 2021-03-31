@@ -34,7 +34,7 @@ $ sparqlet-run homologene_category.md categoryIds=1
 ```
 $ sparqlet-run homologene_category.md -e https://integbio.jp/togosite/sparql
 ```
-繰り返し時間測定:
+繰り返し実行(時間測定のみ):
 ```
 $ sparqlet-run homologene_category.md -n 3
 386 ms
