@@ -41,7 +41,7 @@ $ sparqlet-run homologene_category.md -n 3
 304 ms
 305 ms
 ```
-トレース時間も取得:
+トレースした時間の取得:
 ```
 $ sparqlet-run homologene_category.md -n3 -t
 total   input_genes:js  input_branch:js main:sparql     return:js
