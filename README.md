@@ -2,9 +2,9 @@
 ## 概要
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を記述した.
 ```
-sparqlet-run example.md
+$ sparqlet-run example.md
 ```
-のように、ローカルにあるmdファイルを実行し、コマンドラインで結果を確認したりできる.
+のように、ローカルにあるmdファイルを実行し、結果を確認したりできる.
 
 ## Example
 ```
@@ -64,18 +64,19 @@ categoryId label        count
 1          human        172
 2          chimpanzee   560
 ...
+```
 
 ## Install
 ```
-npm install
+$ npm install
 ```
-(オプショナル) パスに入れるためには、続けて `npm link` する.
+パスに入れるために、続けて `$ npm link` する.
 
 ## Usage
 ```
-./bin/sparqlet-run.mjs example.md
+$ ./bin/sparqlet-run.mjs example.md
 ```
-`npm link` してあれば
+`$ npm link` してあれば
 ```
-sparqlet-run example.md
+$ sparqlet-run example.md
 ```
