@@ -11,7 +11,7 @@ sparqlet-run example.md
 ```
 npm install
 ```
-オプショナルで
+オプショナルで、パスに入れるために
 ```
 npm link
 ```
