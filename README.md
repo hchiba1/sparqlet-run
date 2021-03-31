@@ -24,24 +24,24 @@ $ sparqlet-run homologene_category.md
 ]
 323 ms
 ```
-パラメータ指定
+パラメータ指定:
 ```
 $ sparqlet-run homologene_category.md categoryIds=1
 [ { categoryId: '1', label: 'human', count: 172 } ]
 385 ms
 ```
-エンドポイントを変えて実行
+エンドポイントを変えて実行:
 ```
 $ sparqlet-run homologene_category.md -e https://integbio.jp/togosite/sparql
 ```
-繰り返し(時間測定のみ)
+繰り返し時間測定:
 ```
 $ sparqlet-run homologene_category.md -n 3
 386 ms
 304 ms
 305 ms
 ```
-トレースした時間も取得
+トレース時間も取得:
 ```
 $ sparqlet-run homologene_category.md -n3 -t
 total   input_genes:js  input_branch:js main:sparql     return:js
@@ -49,7 +49,7 @@ total   input_genes:js  input_branch:js main:sparql     return:js
 300 ms  0 ms    1 ms    298 ms  1 ms
 217 ms  1 ms    1 ms    213 ms  2 ms
 ```
-タブ区切り出力(beta)
+タブ区切り出力(beta):
 ```
 $ sparqlet-run homologene_category.md --tsv
 categoryId      label   count
@@ -57,7 +57,7 @@ categoryId      label   count
 2       chimpanzee      560
 ...
 ```
-カラムを揃える(beta)
+カラムを揃える(beta):
 ```
 $ sparqlet-run homologene_category.md -c
 categoryId label        count
