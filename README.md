@@ -67,7 +67,9 @@ categoryId label        count
 ```
 
 ## Install
+ES6 Modulesを利用しているため、Node.js v14以上推奨.
 ```
+$ cd sparqlet-run
 $ npm install
 ```
 パスに入れるためには、続けて `$ npm link` する.
