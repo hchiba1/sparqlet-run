@@ -58,3 +58,4 @@ $ sparqlet-run
 ```
 
 ## Misc
+![Emacs](example/spang-emacs.png)
