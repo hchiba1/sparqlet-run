@@ -2,7 +2,7 @@
 
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
 
-Node.js v14.13.0 以上.
+ES6 ModulesなどNodeの新しい機能を利用している. Node.js v14.13.0 以上が必要.
 
 ## Example
 ```
