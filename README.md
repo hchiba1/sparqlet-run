@@ -58,6 +58,6 @@ $ sparqlet-run
 ```
 
 ## Misc
-Emacsに poly-markdown と sparql-mode.el と、SPARQLetが見やすく表示される.
+Emacsに poly-markdown と sparql-mode.el を入れて、少し設定を施すと、SPARQLetが見やすく表示される.
 
 ![Emacs](example/sparqlet-emacs.png)
