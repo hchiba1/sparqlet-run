@@ -2,6 +2,9 @@
   "name": "sparqlet-run",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=14.13.0"
+  },
   "keywords": [],
   "dependencies": {
     "accepts": "^1.3.7",
