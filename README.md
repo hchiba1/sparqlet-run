@@ -41,7 +41,9 @@ $ sparqlet-run homologene_category.md -n 3
 ```
 
 ## Install
-ES6 ModulesなどNodeの新しい機能を利用している. Node.jsのv14.13.0以上が必要.
+ES6 ModulesなどNodeの新しい機能を利用している. Node.jsのv14.13.0以上が必要. 
+
+nなどを使って新しいNode.jsを入れる.
 ```
 $ cd sparqlet-run
 $ npm install
