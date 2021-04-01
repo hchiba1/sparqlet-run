@@ -2,6 +2,8 @@
 
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
 
+(\*.mjs は ES Modules という Node.js の新しい機能を利用している)
+
 ## Example
 ```
 $ sparqlet-run homologene_category.md
@@ -39,7 +41,7 @@ $ sparqlet-run homologene_category.md -n 3
 ```
 
 ## Install
-ES ModulesなどNode.jsの新しい機能を利用している. Node.jsのv14.13.0以上が必要.
+Node.jsのv14.13.0以上が必要.
 ```
 $ cd sparqlet-run
 $ npm install
