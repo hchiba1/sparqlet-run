@@ -2,7 +2,7 @@
 
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
 
-(\*.mjs は ES Modules という Node.js の新しい機能を利用している)
+(\*.mjs は ES Modules という Node.js の新しい機能を利用)
 
 ## Example
 ```
