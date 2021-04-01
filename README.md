@@ -56,3 +56,5 @@ $ ./bin/sparqlet-run.mjs
 ```
 $ sparqlet-run
 ```
+
+## Misc
