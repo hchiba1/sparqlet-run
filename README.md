@@ -1,6 +1,6 @@
 # sparqlet-run
 
-https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成.
+https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成しました.
 
 (.mjs という拡張子は ES Modules という Node.js の新しい機能を利用していることを表す)
 
