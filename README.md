@@ -58,6 +58,6 @@ $ sparqlet-run
 ```
 
 ## Misc
-Emacsに poly-markdown と sparql-mode.el を入れて、少し設定を施すと、SPARQLetが編集しやすくなる.
+Emacsに poly-markdown と https://github.com/hchiba1/sparql-mode を入れると、SPARQLetが編集しやすくなる.
 
 ![Emacs](example/sparqlet-emacs.png)
