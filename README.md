@@ -29,7 +29,7 @@ $ sparqlet-run homologene_category.md categoryIds=1
 ]
 385 ms
 ```
-エンドポイントを一時的に変えてみる:
+エンドポイントを変えてみる:
 ```
 $ sparqlet-run homologene_category.md -e https://integbio.jp/togosite/sparql
 ```
