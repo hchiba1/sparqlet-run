@@ -68,7 +68,7 @@ async function execOnce(sparqlet, params) {
   } else if (opts.tsv) {
     printTsv(jsonToTsv(ret.results));
   } else {
-    console.log(ret.results);
+    console.log(JSON.stringify(ret.results, null, 2));
   }
 
   if (opts.trace) {
