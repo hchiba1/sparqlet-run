@@ -2,7 +2,7 @@
 
 https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet-run.mjs を作成しました.
 
-(.mjs という拡張子は ES Modules という Node.js の新しい機能を利用していることを表す)
+(.mjs という拡張子は ES Modules という Node.js の新しい機能を利用していることを表しています)
 
 ## Example
 ```
@@ -38,6 +38,14 @@ $ sparqlet-run homologene_category.md -n 3
 386 ms
 304 ms
 305 ms
+```
+テーブル形式で出力、カラムを揃える
+```
+$ sparqlet-run homologene_category.md -c
+```
+ディレクトリ内のSPARQLetをすべて実行
+```
+$ for file in *.md; echo $file; do sparqlet-run $file; done
 ```
 
 ## Install
