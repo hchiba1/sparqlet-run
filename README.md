@@ -8,24 +8,25 @@ https://github.com/dbcls/sparqlist の lib/\*.mjs を利用して、bin/sparqlet
 ```
 $ sparqlet-run homologene_category.md
 [
-  { categoryId: '1', label: 'human', count: 172 },
-  { categoryId: '2', label: 'chimpanzee', count: 560 },
-  { categoryId: '3', label: 'primates', count: 498 },
-  { categoryId: '4', label: 'mouse, rat', count: 285 },
-  { categoryId: '5', label: 'mammal', count: 2907 },
-  { categoryId: '6', label: 'chicken', count: 633 },
-  { categoryId: '7', label: 'frog', count: 1483 },
-  { categoryId: '8', label: 'zebrafish', count: 6637 },
-  { categoryId: '9', label: 'insect, worm', count: 2890 },
-  { categoryId: '10', label: 'fungi', count: 580 },
-  { categoryId: '11', label: 'plant', count: 2484 }
+  {
+    "categoryId": "1",
+    "label": "human",
+    "count": 172
+  },
+  ...
 ]
 323 ms
 ```
 パラメータ指定:
 ```
 $ sparqlet-run homologene_category.md categoryIds=1
-[ { categoryId: '1', label: 'human', count: 172 } ]
+[
+  {
+    "categoryId": "1",
+    "label": "human",
+    "count": 172
+  }
+]
 385 ms
 ```
 エンドポイントを一時的に変えてみる:
@@ -39,11 +40,11 @@ $ sparqlet-run homologene_category.md -n 3
 304 ms
 305 ms
 ```
-テーブル形式で出力、カラムを揃える
+テーブル形式で出力、カラムを揃える:
 ```
 $ sparqlet-run homologene_category.md -c
 ```
-ディレクトリ内のSPARQLetをすべて実行
+ディレクトリ内のSPARQLetをすべて実行:
 ```
 $ for file in *.md; echo $file; do sparqlet-run $file; done
 ```
@@ -54,13 +55,13 @@ Node.jsのv14.13.0以上が必要.
 $ cd sparqlet-run
 $ npm install
 ```
-パスに入れるためには、続けて `$ npm link` .
+コマンドをパスに入れるため、続けて `$ npm link` (root権限が必要な場合は `$ sudo npm link`)
 
 ## Usage
 ```
 $ ./bin/sparqlet-run.mjs
 ```
-もしくは、`$ npm link` してあれば、
+あるいは、`$ npm link` してあれば、
 ```
 $ sparqlet-run
 ```
