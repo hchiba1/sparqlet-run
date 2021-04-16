@@ -15,7 +15,7 @@ $ sparqlet-run homologene_category.md
   },
   ...
 ]
-323 ms
+490 ms
 ```
 パラメータ指定:
 ```
