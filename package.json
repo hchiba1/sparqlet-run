@@ -12,8 +12,10 @@
     "commander": "^7.2.0",
     "commonmark": "^0.29.3",
     "csv-parse": "^4.15.3",
+    "csv-write-stream": "^2.0.0",
     "fontoxpath": "^3.17.2",
     "handlebars": "^4.7.7",
+    "ls": "^0.2.1",
     "mime": "^2.5.2",
     "node-fetch": "^2.6.1",
     "parse5": "^6.0.1",
@@ -22,6 +24,7 @@
     "xmlserializer": "^0.6.1"
   },
   "bin": {
-    "sparqlet-run": "bin/sparqlet-run.mjs"
+    "sparqlet-run": "bin/sparqlet-run.mjs",
+    "sparqlet-test": "bin/sparqlet-test.js"
   }
 }
