@@ -20,11 +20,13 @@
     "node-fetch": "^2.6.1",
     "parse5": "^6.0.1",
     "slimdom-sax-parser": "^1.4.0",
+    "sync-request": "^6.1.0",
     "type-is": "^1.6.18",
     "xmlserializer": "^0.6.1"
   },
   "bin": {
     "sparqlet-run": "bin/sparqlet-run.mjs",
-    "sparqlet-test": "bin/sparqlet-test.js"
+    "sparqlet-test": "bin/sparqlet-test.js",
+    "togosite-sparqlets": "bin/togosite-sparqlets.js"
   }
 }
