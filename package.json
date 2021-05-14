@@ -27,6 +27,7 @@
   "bin": {
     "sparqlet-run": "bin/sparqlet-run.mjs",
     "sparqlet-test": "bin/sparqlet-test.js",
+    "togosite-sparqlet": "bin/togosite-sparqlet.js",
     "togosite-sparqlets": "bin/togosite-sparqlets.js"
   }
 }
