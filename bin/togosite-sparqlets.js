@@ -10,6 +10,7 @@ const path = require('path');
 
 program
   .option('-q, --quit', 'show URI and quit')
+  .option('-d, --debug', 'debug')
   .option('-v, --verbose', 'verbose')
   .arguments('<ARG>')
   .parse(process.argv);
@@ -23,7 +24,11 @@ if (uri) {
     console.log(uri);
   } else {
     const json = syncRequest('GET', uri).getBody('utf8');
-    printList(json);
+    if (opts.debug) {
+      console.log(json);
+    } else {
+      printList(json);
+    }
   }
 }
 
