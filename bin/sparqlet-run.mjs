@@ -13,6 +13,7 @@ program
   .option('--tsv', 'output in tsv')
   .option('-c, --column', 'align columns of tsv')
   .option('-s, --show', 'show internal SPARQLet object')
+  .option('--ep', 'show target endpoint')
   .option('-p, --params', 'show parameters')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
@@ -48,6 +49,14 @@ try {
   }
   if (opts.show) {
     console.log(sparqlet);
+    process.exit(0);
+  }
+  if (opts.ep) {
+    sparqlet.procedures.forEach((elem) => {
+      if (elem.type === 'sparql') {
+        console.log(elem.endpoint + '\t' + sparqlet.name);
+      }
+    });
     process.exit(0);
   }
   if (opts.params) {
