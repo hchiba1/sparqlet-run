@@ -2,12 +2,6 @@
 const program = require('commander');
 const syncRequest = require('sync-request');
 
-const fs = require('fs');
-const { spawnSync } = require('child_process');
-const csvWriter = require('csv-write-stream');
-const ls = require('ls');
-const path = require('path');
-
 program
   .option('-q, --quit', 'show URI and quit')
   .option('-d, --debug', 'debug')
