@@ -5,13 +5,19 @@ const syncRequest = require('sync-request');
 program
   .option('-q, --quit', 'show URI and quit')
   .option('-d, --debug', 'debug')
+  .option('--js', 'use jsDelivr')
   .option('-v, --verbose', 'verbose')
   .arguments('<ARG>')
   .parse(process.argv);
 
 const opts = program.opts();
 
-const uri = 'https://raw.githubusercontent.com/dbcls/togosite/develop/config/togosite-human/properties.json';
+let base_uri = 'https://raw.githubusercontent.com/dbcls/togosite/';
+if (opts.jsDelivr) {
+  base_uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
+}
+let version = 'develop';
+const uri = `${base_uri}${version}/config/togosite-human/properties.json`;
 
 if (uri) {
   if (opts.quit) {
