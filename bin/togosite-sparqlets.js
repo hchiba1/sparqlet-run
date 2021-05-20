@@ -6,6 +6,7 @@ program
   .option('-q, --quit', 'show URI and quit')
   .option('-d, --debug', 'debug')
   .option('--js', 'use jsDelivr')
+  .option('-t, --title', 'title')
   .option('-v, --verbose', 'verbose')
   .arguments('<ARG>')
   .parse(process.argv);
@@ -39,7 +40,10 @@ function printList(json) {
     }
     subj.properties.forEach((prop) => {
       const sparqlet_name = prop.data.replace(/.*\//, '');
-      if (opts.verbose) {
+      if (opts.verbose && opts.title) {
+        const title = getTitle(sparqlet_name);
+        console.log(`${prop.label}\t${sparqlet_name}\t${title}`);
+      } else if (opts.verbose) {
         console.log(`${prop.label}\t${sparqlet_name}`);
       } else {
         console.log(sparqlet_name);
@@ -49,4 +53,12 @@ function printList(json) {
       console.log();
     }
   });
+}
+
+function getTitle(sparqlet_name) {
+  const uri = 'https://integbio.jp/togosite/sparqlist/-api/sparqlets/' + sparqlet_name;
+
+  const json = syncRequest('GET', uri).getBody('utf8');
+
+  return JSON.parse(json).data.attributes.title;
 }
