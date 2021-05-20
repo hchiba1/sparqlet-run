@@ -41,9 +41,20 @@ try {
     });
   }
   if (opts.endpoint) {
+    let endpoint = opts.endpoint;
+    if (!/^(http|https):\/\//.test(endpoint)) {
+      const dirname = path.dirname(new URL(import.meta.url).pathname);
+      const endpointsList = `${dirname}/../etc/endpoints`;
+      const endpointsMap = await readEndpoints(endpointsList);
+      if (!endpointsMap[endpoint]) {
+        console.error(`${endpoint}: no such endpoint`);
+        process.exit(1);
+      }
+      endpoint = endpointsMap[endpoint];
+    }
     sparqlet.procedures.forEach((elem) => {
       if (elem.type === 'sparql') {
-        elem.endpoint = opts.endpoint;
+        elem.endpoint = endpoint;
       }
     });
   }
@@ -125,6 +136,18 @@ async function measureTime(sparqlet, params, i) {
     });
   }
   console.log(out.join('\t'));
+}
+
+async function readEndpoints(file) {
+  const text = await fs.readFile(file, 'utf8');
+  let endpointsMap = {};
+  text.split('\n').forEach((line) => {
+    const fields = line.split(/\s+/);
+    if (fields.length > 1 && !/^ *#/.test(line)) {
+      endpointsMap[fields[0]] = fields[1];
+    }
+  });
+  return endpointsMap;
 }
 
 function jsonToTsv(json) {
