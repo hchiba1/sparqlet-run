@@ -14,7 +14,9 @@ program
   .option('-c, --column', 'align columns of tsv')
   .option('-s, --show', 'show internal SPARQLet object')
   .option('--ep', 'show target endpoint')
-  .option('-p, --params', 'show parameters')
+  .option('-i, --id <IDs>', 'set queryIds')
+  .option('-l, --ls', 'set mode=idList')
+  .option('-o, --obj', 'set mode=objList')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
 
@@ -38,8 +40,19 @@ try {
       if (matched) {
         let [, p, v] = matched;
         params[p] = v;
+      } else if (!('categoryIds' in params)) {
+        params['categoryIds'] = param;
       }
     });
+  }
+  if (opts.id != null) {
+    params['queryIds'] = opts.id;
+  }
+  if (opts.ls) {
+    params['mode'] = 'idList';
+  }
+  if (opts.obj) {
+    params['mode'] = 'objectList';
   }
   if (opts.endpoint) {
     let endpoint = opts.endpoint;
