@@ -80,6 +80,11 @@ try {
     sparqlet.procedures.forEach((elem) => {
       if (elem.type === 'sparql') {
         console.log(elem.endpoint + '\t' + sparqlet.name);
+      } else if (elem.type === 'javascript') {
+        const matched = elem.data.match(new RegExp('https://\\S+/sparqlist\\S+api/\\w+', 'g'));
+        if (matched) {
+          console.log(matched);
+        }
       }
     });
     process.exit(0);
