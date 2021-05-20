@@ -5,6 +5,7 @@ const syncRequest = require('sync-request');
 program
   .option('-q, --quit', 'show URI and quit')
   .option('-r, --run', 'run')
+  .option('-t, --title', 'title')
   .option('-d, --debug', 'debug')
   .arguments('<ARG>')
   .parse(process.argv);
@@ -30,6 +31,11 @@ const json = syncRequest('GET', uri).getBody('utf8');
 
 if (opts.run) {
   console.log(json);
+  process.exit(0);
+}
+
+if (opts.title) {
+  console.log(JSON.parse(json).data.attributes.title);
   process.exit(0);
 }
 
