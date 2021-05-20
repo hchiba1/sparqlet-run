@@ -33,10 +33,11 @@ try {
   let params = {};
   if (program.args.length > 1) {
     const paramArr = program.args.slice(1);
-    paramArr.forEach((p) => {
-      let [k, v] = p.split(/=(.+)/);
-      if (v) {
-        params[k] = v;
+    paramArr.forEach((param) => {
+      const matched = param.match(/^(\S+?)=(.*)$/);
+      if (matched) {
+        let [, p, v] = matched;
+        params[p] = v;
       }
     });
   }
