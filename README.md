@@ -49,6 +49,54 @@ $ sparqlet-run homologene_category.md -c
 $ for file in *.md; echo $file; do sparqlet-run $file; done
 ```
 
+## ターゲットエンドポイントを調べる
+```
+$ sparqlet-run homologene_category.md --ep
+https://integbio.jp/togosite/sparql   homologene_category
+```
+JavaScriptの中で、別のSPARQListを呼び出している場合
+```
+$ sparqlet-run refex_specific_high_expression.md --ep
+[
+  'https://integbio.jp/togosite/sparqlist/api/refex_specific_expression'
+]
+```
+
+## Togoサイト関連
+Togoサイトで利用しているSPARQLetをリストアップ
+```
+$ togosite-sparqlets
+Ensembl_gene_type
+Ensembl-exon-count
+...
+```
+
+```
+$ togosite-sparqlets -v
+[[Gene]]
+Gene biotype    Ensembl_gene_type
+# of exons      Ensembl-exon-count
+...
+```
+
+さらに、各々のターゲットエンドポイントを調べる
+```
+$ for i in $(togosite-sparqlets); do echo "== $i =="; sparqlet-run $i.md --ep; done
+== Ensembl_gene_type ==
+https://integbio.jp/togosite/sparql     Ensembl_gene_type
+== Ensembl-exon-count ==
+https://integbio.jp/togosite/sparql     Ensembl-exon-count
+...
+```
+
+TogoサイトSPARQListからSPARQLetを取得して、ローカルで実行してみる
+```
+$ togosite-sparqlet homologene_category
+```
+```
+$ togosite-sparqlet --run homologene_category
+```
+
 ## Install
 Node.jsのv14.13.0以上が必要.
 ```
