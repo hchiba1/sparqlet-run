@@ -9,11 +9,14 @@ import SPARQLet from '../lib/sparqlet.mjs';
 program
   .option('-e, --endpoint <ENDPOINT>', 'change target endpoint')
   .option('-n, --iteration <NUM>', 'number of iterations for test')
-  .option('-t, --trace', 'output traces')
+  .option('--trace', 'output traces')
   .option('--tsv', 'output in tsv')
   .option('-c, --column', 'align columns of tsv')
-  .option('-s, --show', 'show internal SPARQLet object')
-  .option('--ep', 'show target endpoint')
+  .option('-d, --debug', 'show internal SPARQLet object')
+  .option('-t, --title', 'show title')
+  .option('-s, --show-ep', 'show target endpoint')
+  .option('-p, --params', 'show parameters')
+  .option('--example', 'show parameters example')
   .option('-i, --id <IDs>', 'set queryIds')
   .option('-l, --ls', 'set mode=idList')
   .option('-o, --obj', 'set mode=objList')
@@ -74,23 +77,29 @@ try {
   }
   if (opts.show) {
     console.log(sparqlet);
-    process.exit(0);
   }
-  if (opts.ep) {
+  opts.title && console.log(sparqlet.title);
+  if (opts.showEp) {
     sparqlet.procedures.forEach((elem) => {
       if (elem.type === 'sparql') {
         console.log(elem.endpoint + '\t' + sparqlet.name);
       } else if (elem.type === 'javascript') {
         const matched = elem.data.match(new RegExp('https://\\S+/sparqlist\\S+api/\\w+', 'g'));
         if (matched) {
-          console.log(matched);
+          matched.forEach((url) => {
+            console.log(url + '\t' + sparqlet.name);
+          });
         }
       }
     });
-    process.exit(0);
   }
   if (opts.params) {
+    console.log(sparqlet.params.map((param) => param.name).join('\t'));
+  }
+  if (opts.example) {
     console.log(sparqlet.params);
+  }
+  if (opts.show || opts.showEp || opts.title || opts.params || opts.example) {
     process.exit(0);
   }
   if (opts.iteration) {
