@@ -20,16 +20,14 @@ if (opts.jsDelivr) {
 let version = 'develop';
 const uri = `${base_uri}${version}/config/togosite-human/properties.json`;
 
-if (uri) {
-  if (opts.quit) {
-    console.log(uri);
+if (opts.quit) {
+  console.log(uri);
+} else {
+  const json = syncRequest('GET', uri).getBody('utf8');
+  if (opts.debug) {
+    console.log(json);
   } else {
-    const json = syncRequest('GET', uri).getBody('utf8');
-    if (opts.debug) {
-      console.log(json);
-    } else {
-      printList(json);
-    }
+    printList(json);
   }
 }
 
