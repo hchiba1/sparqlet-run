@@ -15,11 +15,15 @@ program
   .option('-d, --debug', 'show internal SPARQLet object')
   .option('-t, --title', 'show title')
   .option('-s, --show-ep', 'show target endpoint')
-  .option('-p, --params', 'show parameters')
-  .option('--example', 'show parameters example')
   .option('-i, --id <IDs>', 'set queryIds')
   .option('-l, --ls', 'set mode=idList')
   .option('-o, --obj', 'set mode=objList')
+  .option('-p, --params', 'show parameters')
+  .option('--ex', 'show parameters example')
+  .option('--p1', 'use parameter set 1')
+  .option('--p2', 'use parameter set 2')
+  .option('--p3', 'use parameter set 3')
+  .option('--p4', 'use parameter set 4')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
 
@@ -75,7 +79,7 @@ try {
       }
     });
   }
-  if (opts.show) {
+  if (opts.debug) {
     console.log(sparqlet);
   }
   opts.title && console.log(sparqlet.title);
@@ -96,11 +100,31 @@ try {
   if (opts.params) {
     console.log(sparqlet.params.map((param) => param.name).join('\t'));
   }
-  if (opts.example) {
+  if (opts.ex) {
     console.log(sparqlet.params);
   }
-  if (opts.show || opts.showEp || opts.title || opts.params || opts.example) {
+  if (opts.debug || opts.showEp || opts.title || opts.params || opts.ex) {
     process.exit(0);
+  }
+  if (opts.p2) {
+    sparqlet.params.forEach((param) => {
+      if (param.name === 'categoryIds') {
+        params['categoryIds'] = param.example.split(' ')[0];
+      }
+    });
+    params['mode'] = 'objectList';
+    console.log(params);
+    // process.exit(0);
+  }
+  if (opts.p4) {
+    sparqlet.params.forEach((param) => {
+      if (param.name === 'queryIds') {
+        params['queryIds'] = param.example;
+        params['mode'] = 'objectList';
+      }
+    });
+    console.log(params);
+    // process.exit(0);
   }
   if (opts.iteration) {
     for (let i = 0; i < opts.iteration; i++) {
