@@ -3,11 +3,12 @@ import program from 'commander';
 import syncRequest from 'sync-request';
 
 program
-  .option('-q, --quit', 'show URI and quit')
-  .option('-d, --debug', 'debug')
-  .option('--js', 'use jsDelivr')
+  .option('-l, --list', 'list names only')
   .option('-t, --title', 'title')
+  .option('-d, --debug', 'debug')
   .option('-v, --verbose', 'verbose')
+  .option('-q, --quit', 'show URI and quit')
+  .option('--js', 'use jsDelivr')
   .arguments('<ARG>')
   .parse(process.argv);
 
@@ -33,21 +34,21 @@ if (opts.quit) {
 
 function printList(json) {
   JSON.parse(json).forEach((subj) => {
-    if (opts.verbose) {
+    if (! opts.list) {
       console.log('[[' + subj.subject + ']]');
     }
     subj.properties.forEach((prop) => {
       const sparqlet_name = prop.data.replace(/.*\//, '');
-      if (opts.verbose && opts.title) {
+      if (opts.title) {
         const title = getTitle(sparqlet_name);
         console.log(`${prop.label}\t${sparqlet_name}\t${title}`);
-      } else if (opts.verbose) {
-        console.log(`${prop.label}\t${sparqlet_name}`);
-      } else {
+      } else if (opts.list) {
         console.log(sparqlet_name);
+      } else {
+        console.log(`${prop.label}\t${sparqlet_name}`);
       }
     });
-    if (opts.verbose) {
+    if (! opts.list) {
       console.log();
     }
   });
