@@ -3,30 +3,28 @@ import program from 'commander';
 import syncRequest from 'sync-request';
 
 program
-  .option('-l, --list', 'list names only')
   .option('-t, --title', 'title')
-  .option('-d, --debug', 'debug')
+  .option('-j, --json', 'show config in JSON')
   .option('-v, --verbose', 'verbose')
-  .option('-q, --quit', 'show URI and quit')
-  .option('--js', 'use jsDelivr')
-  .arguments('<ARG>')
+  .option('-d, --debug', 'show URI and quit')
+  .option('--js', 'use jsdelivr instead of raw.githubusercontent')
   .parse(process.argv);
 
 const opts = program.opts();
 
 let base_uri = 'https://raw.githubusercontent.com/dbcls/togosite/';
-if (opts.jsDelivr) {
+if (opts.js) {
   base_uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
 }
 let version = 'develop';
 const uri = `${base_uri}${version}/config/togosite-human/properties.json`;
 
-if (opts.quit) {
+if (opts.debug) {
   console.log(uri);
 } else {
   const json = syncRequest('GET', uri).getBody('utf8');
-  if (opts.debug) {
-    console.log(json);
+  if (opts.json) {
+    process.stdout.write(json);
   } else {
     printList(json);
   }
@@ -34,7 +32,7 @@ if (opts.quit) {
 
 function printList(json) {
   JSON.parse(json).forEach((subj) => {
-    if (! opts.list) {
+    if (opts.verbose) {
       console.log('[[' + subj.subject + ']]');
     }
     subj.properties.forEach((prop) => {
@@ -42,13 +40,13 @@ function printList(json) {
       if (opts.title) {
         const title = getTitle(sparqlet_name);
         console.log(`${prop.label}\t${sparqlet_name}\t${title}`);
-      } else if (opts.list) {
-        console.log(sparqlet_name);
-      } else {
+      } else if (opts.verbose) {
         console.log(`${prop.label}\t${sparqlet_name}`);
+      } else {
+        console.log(sparqlet_name);
       }
     });
-    if (! opts.list) {
+    if (opts.verbose) {
       console.log();
     }
   });
