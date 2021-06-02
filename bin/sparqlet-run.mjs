@@ -98,7 +98,7 @@ try {
     console.log(sparqlet.params.map((param) => param.name).join('\t'));
   }
   if (opts.ex) {
-    console.log(sparqlet.params);
+    console.log(JSON.stringify(sparqlet.params, null, 2));
   }
   if (opts.p1) {
     sparqlet.params.forEach((param) => {
@@ -107,7 +107,7 @@ try {
       }
     });
     if (opts.debug) {
-      console.log(params);
+      console.log(JSON.stringify(params, null, 2));
       process.exit(0);
     }
   }
@@ -119,7 +119,7 @@ try {
     });
     params['mode'] = 'idList';
     if (opts.debug) {
-      console.log(params);
+      console.log(JSON.stringify(params, null, 2));
       process.exit(0);
     }
   }
@@ -131,7 +131,7 @@ try {
       }
     });
     if (opts.debug) {
-      console.log(params);
+      console.log(JSON.stringify(params, null, 2));
       process.exit(0);
     }
   }
@@ -146,7 +146,7 @@ try {
       }
     });
     if (opts.debug) {
-      console.log(params);
+      console.log(JSON.stringify(params, null, 2));
       process.exit(0);
     }
   }
