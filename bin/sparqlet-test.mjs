@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const { spawnSync } = require('child_process');
-const csvWriter = require('csv-write-stream');
-const ls = require('ls');
-const path = require('path');
+import fs from 'fs';
+import program from 'commander';
+import { spawnSync } from 'child_process';
+import csvWriter from 'csv-write-stream';
+import ls from 'ls';
+import path from 'path';
 
 const readFile = (path) => fs.readFileSync(path, 'utf8').toString();
 
-const commander = require('commander')
+program
   .option('-n, --iteration <ITERATION_NUM>', 'number of iteration of measurement', 1)
   .option('-d, --delimiter <DELIMITER>', 'delimiter of output', '\t')
   .option('-e, --endpoint <ENDPOINT>', 'url of target endpoint')
@@ -17,17 +18,17 @@ const commander = require('commander')
   .option('--output_error', 'output to stderr')
   .option('-a, --average', 'calculate average')
   .option('-v, --verbose', 'output progress to stderr')
-  .arguments('[json_or_queries...]');
+  .arguments('[json_or_queries...]')
+  .parse(process.argv);
 
-commander.parse(process.argv);
-if (commander.args.length < 1) {
-  commander.help();
+if (program.args.length < 1) {
+  program.help();
 }
 
-const opts = commander.opts();
+const opts = program.opts();
 
 let benchmarks = [];
-for (let arg of commander.args) {
+for (let arg of program.args) {
   if (arg.endsWith('.json')) {
     benchmarks = benchmarks.concat(JSON.parse(readFile(arg)));
     process.chdir(path.dirname(arg));
@@ -84,11 +85,11 @@ function measureQuery(queryPath, expected) {
   for (let i = 0; i < opts.iteration; i++) {
     let column = (i + 1).toString();
     if (opts.verbose) console.error(`query: ${column}`);
-    let arguments = [queryPath];
+    let args = [queryPath];
     if (opts.endpoint) {
-      arguments = arguments.concat(['--endpoint', opts.endpoint]);
+      args = args.concat(['--endpoint', opts.endpoint]);
     }
-    let result = spawnSync('sparqlet-run', arguments, { maxBuffer: Infinity });
+    let result = spawnSync('sparqlet-run', args, { maxBuffer: Infinity });
     if (result.status) {
       // error
       console.error(result.stderr.toString());
@@ -97,7 +98,7 @@ function measureQuery(queryPath, expected) {
     } else {
       let matched = result.stderr.toString().match(/(\d+) ms/);
       if (matched) {
-        time = matched[1];
+        let time = matched[1];
         if (opts.sec) {
           time = time / 1000;
         }

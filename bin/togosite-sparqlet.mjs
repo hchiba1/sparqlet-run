@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const program = require('commander');
-const syncRequest = require('sync-request');
+import program from 'commander';
+import syncRequest from 'sync-request';
 
 program
   .option('-q, --quit', 'show URI and quit')
