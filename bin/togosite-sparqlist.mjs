@@ -1,9 +1,13 @@
 #!/usr/bin/env node
+import fs from 'fs/promises';
+import path from 'path';
 import program from 'commander';
 import syncRequest from 'sync-request';
+import SPARQLet from '../lib/sparqlet.mjs';
 
 program
   .option('-t, --title', 'title')
+  .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
   .option('-v, --verbose', 'verbose')
   .option('-d, --debug', 'show URI and quit')
@@ -40,6 +44,9 @@ function printList(json) {
       if (opts.title) {
         const title = getTitle(sparqlet_name);
         console.log(`${prop.label}\t${sparqlet_name}\t${title}`);
+        // outputTitle(`${sparqlet_name}.md`, prop.label);
+      } else if (opts.showEp) {
+        outputEndpoint(`${sparqlet_name}.md`);
       } else if (opts.verbose) {
         console.log(`${prop.label}\t${sparqlet_name}`);
       } else {
@@ -58,4 +65,35 @@ function getTitle(sparqlet_name) {
   const json = syncRequest('GET', uri).getBody('utf8');
 
   return JSON.parse(json).data.attributes.title;
+}
+
+async function outputTitle(markdownFile, label) {
+  const name = path.basename(markdownFile).replace(/\.md$/, '');
+  const pathPrefix = path.dirname(markdownFile) + '/';
+  const stat = await fs.lstat(markdownFile);
+  const markdown = await fs.readFile(markdownFile, 'utf8');
+
+  let sparqlet = SPARQLet.load(name, markdown, pathPrefix, stat.mtime)
+  console.log(`${label}\t${name}\t${sparqlet.title}`);
+}
+
+async function outputEndpoint(markdownFile) {
+  const name = path.basename(markdownFile).replace(/\.md$/, '');
+  const pathPrefix = path.dirname(markdownFile) + '/';
+  const stat = await fs.lstat(markdownFile);
+  const markdown = await fs.readFile(markdownFile, 'utf8');
+
+  let sparqlet = SPARQLet.load(name, markdown, pathPrefix, stat.mtime)
+  sparqlet.procedures.forEach((elem) => {
+    if (elem.type === 'sparql') {
+      console.log(elem.endpoint + '\t' + sparqlet.name);
+    } else if (elem.type === 'javascript') {
+      const matched = elem.data.match(new RegExp('https://\\S+/sparqlist\\S+api/\\w+', 'g'));
+      if (matched) {
+        matched.forEach((url) => {
+          console.log(url + '\t' + sparqlet.name);
+        });
+      }
+    }
+  });
 }
