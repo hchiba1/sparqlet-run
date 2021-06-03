@@ -51,28 +51,28 @@ $ for file in *.md; echo $file; do sparqlet-run $file; done
 
 ## ターゲットエンドポイントを調べる
 ```
-$ sparqlet-run homologene_category.md --ep
+$ sparqlet-run homologene_category.md -s
 https://integbio.jp/togosite/sparql   homologene_category
 ```
 JavaScriptの中で、別のSPARQListを呼び出している場合
 ```
-$ sparqlet-run refex_specific_high_expression.md --ep
+$ sparqlet-run refex_specific_high_expression.md -s
 [
   'https://integbio.jp/togosite/sparqlist/api/refex_specific_expression'
 ]
 ```
 
 ## Togoサイト関連
-Togoサイトで利用しているSPARQLetをリストアップ
+Togoサイトのproperties.jsonで利用しているSPARQLetをリストアップ
 ```
-$ togosite-sparqlets
+$ togosite-sparqlist
 Ensembl_gene_type
 Ensembl-exon-count
 ...
 ```
 
 ```
-$ togosite-sparqlets -v
+$ togosite-sparqlist -v
 [[Gene]]
 Gene biotype    Ensembl_gene_type
 # of exons      Ensembl-exon-count
@@ -81,10 +81,8 @@ Gene biotype    Ensembl_gene_type
 
 さらに、各々のターゲットエンドポイントを調べる
 ```
-$ for i in $(togosite-sparqlets); do echo "== $i =="; sparqlet-run $i.md --ep; done
-== Ensembl_gene_type ==
+$ for i in $(togosite-sparqlist); do sparqlet-run $i.md -s; done
 https://integbio.jp/togosite/sparql     Ensembl_gene_type
-== Ensembl-exon-count ==
 https://integbio.jp/togosite/sparql     Ensembl-exon-count
 ...
 ```
