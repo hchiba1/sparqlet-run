@@ -24,6 +24,8 @@ program
   .option('--p2', 'mode=idList categoryIds=...')
   .option('--p3', 'mode=objectList queryIds=...')
   .option('--p4', 'mode=objectList queryIds=... categoryIds=...')
+  .option('--p3multi', 'mode=objectList queryIds=...,...')
+  .option('--p4multi', 'mode=objectList queryIds=...,... categoryIds=...')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
 
@@ -126,6 +128,18 @@ try {
   if (opts.p3) {
     sparqlet.params.forEach((param) => {
       if (param.name === 'queryIds') {
+        params['queryIds'] = extractFirstParam(param);
+        params['mode'] = 'objectList';
+      }
+    });
+    if (opts.debug) {
+      console.log(JSON.stringify(params, null, 2));
+      process.exit(0);
+    }
+  }
+  if (opts.p3multi) {
+    sparqlet.params.forEach((param) => {
+      if (param.name === 'queryIds') {
         params['queryIds'] = extractParams(param);
         params['mode'] = 'objectList';
       }
@@ -136,6 +150,21 @@ try {
     }
   }
   if (opts.p4) {
+    sparqlet.params.forEach((param) => {
+      if (param.name === 'queryIds') {
+        params['queryIds'] = extractFirstParam(param);
+        params['mode'] = 'objectList';
+      }
+      if (param.name === 'categoryIds') {
+        params['categoryIds'] = extractFirstParam(param);
+      }
+    });
+    if (opts.debug) {
+      console.log(JSON.stringify(params, null, 2));
+      process.exit(0);
+    }
+  }
+  if (opts.p4multi) {
     sparqlet.params.forEach((param) => {
       if (param.name === 'queryIds') {
         params['queryIds'] = extractParams(param);
