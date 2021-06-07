@@ -29,7 +29,6 @@
     "sparqlet-test": "bin/sparqlet-test.mjs",
     "togosite-sparqlet": "bin/togosite-sparqlet.mjs",
     "togosite-sparqlist": "bin/togosite-sparqlist.mjs",
-    "togosite-aggregate": "bin/togosite-aggregate.mjs",
     "togosite-metastanza": "bin/togosite-metastanza.mjs"
   }
 }
