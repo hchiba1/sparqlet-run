@@ -12,17 +12,17 @@ program
   .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
   .option('-v, --verbose', 'verbose')
+  .option('-b, --branch <branch>', 'branch', 'develop')
   .option('-d, --debug', 'show URI and quit')
   .option('--js', 'use jsdelivr instead of raw.githubusercontent')
   .parse(process.argv);
 
 const opts = program.opts();
 
-let uri = 'https://raw.githubusercontent.com/dbcls/togosite/';
+let uri = `https://raw.githubusercontent.com/dbcls/togosite/${opts.branch}/config/togosite-human/`;
 if (opts.js) {
-  uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
+  uri = `https://cdn.jsdelivr.net/gh/dbcls/togosite@${opts.branch}/config/togosite-human/`;
 }
-uri += 'develop/config/togosite-human/';
 if (opts.aggregate) {
   uri += 'aggregate.json';
 } else if (opts.metastanza) {
