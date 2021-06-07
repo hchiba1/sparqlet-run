@@ -16,12 +16,12 @@ program
 
 const opts = program.opts();
 
-let base_uri = 'https://raw.githubusercontent.com/dbcls/togosite/';
+let uri = 'https://raw.githubusercontent.com/dbcls/togosite/';
 if (opts.js) {
-  base_uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
+  uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
 }
-let version = 'develop';
-const uri = `${base_uri}${version}/config/togosite-human/properties.json`;
+uri += 'develop/config/togosite-human/';
+uri += 'properties.json';
 
 if (opts.debug) {
   console.log(uri);
