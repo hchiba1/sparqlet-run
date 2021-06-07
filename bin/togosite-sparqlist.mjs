@@ -6,6 +6,7 @@ import syncRequest from 'sync-request';
 import SPARQLet from '../lib/sparqlet.mjs';
 
 program
+  .option('-a, --aggregate', 'show SPARQLets for aggregate')
   .option('-t, --title', 'title')
   .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
@@ -21,7 +22,11 @@ if (opts.js) {
   uri = 'https://cdn.jsdelivr.net/gh/dbcls/togosite@';
 }
 uri += 'develop/config/togosite-human/';
-uri += 'properties.json';
+if (opts.aggregate) {
+  uri += 'aggregate.json';
+} else {
+  uri += 'properties.json';
+}
 
 if (opts.debug) {
   console.log(uri);
@@ -30,8 +35,21 @@ if (opts.debug) {
   if (opts.json) {
     process.stdout.write(json);
   } else {
-    printList(json);
+    if (opts.aggregate) {
+      printAggregateSparqlets(json);
+    } else {
+      printList(json);
+    }
   }
+}
+
+function printAggregateSparqlets(json) {
+  const obj = JSON.parse(json);
+  Object.entries(obj).forEach(([key, val]) => {
+    const url = val.url;
+    const name = url.replace('https://integbio.jp/togosite/sparqlist/api/', '');
+    console.log(name);
+  });  
 }
 
 function printList(json) {
