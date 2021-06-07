@@ -87,6 +87,21 @@ https://integbio.jp/togosite/sparql     Ensembl-exon-count
 ...
 ```
 
+SPARQLetのタイトルも付けて表示する
+```
+$ togosite-sparqlist -vt
+```
+
+Aggregate用SPARQLetのリストを取得
+```
+$ togosite-aggregate
+```
+
+メタスタンザ用の呼び出し部分を抽出
+```
+$ togosite-metastanza -v
+```
+
 TogoサイトSPARQListからSPARQLetを取得して、ローカルで実行してみる
 ```
 $ togosite-sparqlet homologene_category
@@ -94,6 +109,18 @@ $ togosite-sparqlet homologene_category
 ```
 $ togosite-sparqlet --run homologene_category
 ```
+
+### パラメータexampleを利用したテスト
+パターン2 (mode=idList categoryIds=...) のexampleを自動で埋め込んでテストする
+```
+$ sparqlet-run --p2 homologene_category.md
+```
+
+### 結果の検証
+```
+$ sparqlet-test homologene_category.md
+```
+実行結果と、homologene_category.txt を比較する
 
 ## Install
 Node.jsのv14.13.0以上が必要.
