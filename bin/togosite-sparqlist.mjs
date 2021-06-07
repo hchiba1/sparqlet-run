@@ -7,6 +7,7 @@ import SPARQLet from '../lib/sparqlet.mjs';
 
 program
   .option('-a, --aggregate', 'show SPARQLets for aggregate')
+  .option('-m, --metastanza', 'show SPARQLets for metastanza')
   .option('-t, --title', 'title')
   .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
@@ -24,6 +25,8 @@ if (opts.js) {
 uri += 'develop/config/togosite-human/';
 if (opts.aggregate) {
   uri += 'aggregate.json';
+} else if (opts.metastanza) {
+  uri += 'templates.json';
 } else {
   uri += 'properties.json';
 }
@@ -37,6 +40,8 @@ if (opts.debug) {
   } else {
     if (opts.aggregate) {
       printAggregateSparqlets(json);
+    } else if (opts.metastanza) {
+      printMetastanza(json);
     } else {
       printList(json);
     }
@@ -50,6 +55,29 @@ function printAggregateSparqlets(json) {
     const name = url.replace('https://integbio.jp/togosite/sparqlist/api/', '');
     console.log(name);
   });  
+}
+
+function printMetastanza(json) {
+  const obj = JSON.parse(json);
+  const entries = Object.entries(obj.templates);
+  entries.forEach(([key, url]) => {
+    if (opts.verbose) {
+      console.log(`[[${key}]]`);
+      extractUrl(syncRequest('GET', url).getBody('utf8'));
+      console.log();
+    } else {
+      extractUrl(syncRequest('GET', url).getBody('utf8'));
+    }
+  });  
+}
+
+function extractUrl(html) {
+  const lines = html.split('\n');
+  lines.forEach((line) => {
+    if (/(http|https):\/\//.test(line)) {
+      console.log(line.trim());
+    }
+  });
 }
 
 function printList(json) {
