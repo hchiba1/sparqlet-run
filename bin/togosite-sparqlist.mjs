@@ -6,8 +6,8 @@ import syncRequest from 'sync-request';
 import SPARQLet from '../lib/sparqlet.mjs';
 
 program
-  .option('-a, --aggregate', 'show SPARQLets for aggregate')
-  .option('-m, --metastanza', 'show SPARQLets for metastanza')
+  .option('-A, --aggregate', 'show SPARQLets for aggregate')
+  .option('-M, --metastanza', 'show SPARQLets for metastanza')
   .option('-t, --title', 'title')
   .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
