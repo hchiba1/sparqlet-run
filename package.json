@@ -28,6 +28,6 @@
     "sparqlet-run": "bin/sparqlet-run.mjs",
     "sparqlet-test": "bin/sparqlet-test.mjs",
     "sparqlet-api": "bin/sparqlet-api.mjs",
-    "togosite-sparqlist": "bin/togosite-sparqlist.mjs"
+    "sparqlet-ls": "bin/sparqlet-ls.mjs"
   }
 }
