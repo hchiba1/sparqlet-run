@@ -65,14 +65,14 @@ $ sparqlet-run refex_specific_high_expression.md -s
 ## Togoサイト関連
 Togoサイトのproperties.jsonで利用しているSPARQLetをリストアップ
 ```
-$ togosite-sparqlist
+$ sparqlet-ls
 Ensembl_gene_type
 Ensembl-exon-count
 ...
 ```
 
 ```
-$ togosite-sparqlist -v
+$ sparqlet-ls -v
 [[Gene]]
 Gene biotype    Ensembl_gene_type
 # of exons      Ensembl-exon-count
@@ -81,7 +81,7 @@ Gene biotype    Ensembl_gene_type
 
 さらに、各々のターゲットエンドポイントを調べる
 ```
-$ for i in $(togosite-sparqlist); do sparqlet-run $i.md -s; done
+$ for i in $(sparqlet-ls); do sparqlet-run $i.md -s; done
 https://integbio.jp/togosite/sparql     Ensembl_gene_type
 https://integbio.jp/togosite/sparql     Ensembl-exon-count
 ...
@@ -89,25 +89,30 @@ https://integbio.jp/togosite/sparql     Ensembl-exon-count
 
 SPARQLetのタイトルも付けて表示する
 ```
-$ togosite-sparqlist -vt
+$ sparqlet-ls -vt
 ```
 
 Aggregate用SPARQLetのリストを取得
 ```
-$ togosite-aggregate
+$ sparqlet-ls -A
 ```
 
 メタスタンザ用の呼び出し部分を抽出
 ```
-$ togosite-metastanza -v
+$ sparqlet-ls -M
 ```
 
 TogoサイトSPARQListからSPARQLetを取得して、ローカルで実行してみる
 ```
-$ togosite-sparqlet homologene_category
+$ sparqlet-api homologene_category
 ```
 ```
-$ togosite-sparqlet --run homologene_category
+$ sparqlet-api --run homologene_category
+```
+
+GitHubからTogoSite用のSPARQLetを取得して、ローカルで実行してみる
+```
+$ sparqlet-run --github homologene_category
 ```
 
 ### パラメータexampleを利用したテスト
