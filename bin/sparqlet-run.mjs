@@ -2,6 +2,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import program from 'commander';
+import syncRequest from 'sync-request';
 import columnify from 'columnify';
 import csvParse from 'csv-parse/lib/sync.js';
 import SPARQLet from '../lib/sparqlet.mjs';
@@ -26,6 +27,9 @@ program
   .option('--p4', 'mode=objectList queryIds=... categoryIds=...')
   .option('--p3multi', 'mode=objectList queryIds=...,...')
   .option('--p4multi', 'mode=objectList queryIds=...,... categoryIds=...')
+  .option('--github', 'use markdown on GitHub')
+  .option('--url', 'for debugging --github option')
+  .option('--md', 'for debugging --github option')
   .arguments('<sparlqet.md> [param=val]')
   .parse(process.argv);
 
@@ -37,10 +41,29 @@ const opts = program.opts();
 try {
   const markdownFile = program.args[0];
   const name = path.basename(markdownFile).replace(/\.md$/, '');
-  const pathPrefix = path.dirname(markdownFile) + '/';
-  const stat = await fs.lstat(markdownFile);
-  const markdown = await fs.readFile(markdownFile, 'utf8');
-  let sparqlet = SPARQLet.load(name, markdown, pathPrefix, stat.mtime)
+  let markdown;
+  let pathPrefix = null;
+  let mtime = null;
+  if (opts.github) {
+    const repository = 'biosciencedbc/togosite-sparqlist';
+    const branch = 'main';
+    const url = `https://raw.githubusercontent.com/${repository}/${branch}/repository/${markdownFile}`
+    if (opts.url) {
+      console.log(url);
+      process.exit(0);
+    }
+    markdown = syncRequest('GET', url).getBody('utf8');
+    if (opts.md) {
+      console.log(markdown);
+      process.exit(0);
+    }
+  } else {
+    markdown = await fs.readFile(markdownFile, 'utf8');
+    pathPrefix = path.dirname(markdownFile) + '/';
+    const stat = await fs.lstat(markdownFile);
+    mtime = stat.mtime;
+  }
+  let sparqlet = SPARQLet.load(name, markdown, pathPrefix, mtime)
   let params = {};
   if (program.args.length > 1) {
     const paramArr = program.args.slice(1);
