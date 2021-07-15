@@ -110,12 +110,14 @@ try {
       if (elem.type === 'sparql') {
         console.log(elem.endpoint + '\t' + sparqlet.name);
       } else if (elem.type === 'javascript') {
-        const matched = elem.data.match(new RegExp('https?://\\S+/sparqlist\\S+api/\\w+', 'g'));
-        if (matched) {
-          matched.forEach((url) => {
+        elem.data.split('\n').forEach((line) => {
+          const matched = line.match(/^ +\w.+(https?:\/\/\S+\/sparqlist\S+api\/(\w+))/);
+          if (matched) {
+            const [, url, name] = matched;
             console.log(url + '\t' + sparqlet.name);
-          });
-        }
+          }
+        });
+        console.log(urls);
       }
     });
   }
