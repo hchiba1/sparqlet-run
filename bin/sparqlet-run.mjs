@@ -117,7 +117,6 @@ try {
             console.log(url + '\t' + sparqlet.name);
           }
         });
-        console.log(urls);
       }
     });
   }
