@@ -19,7 +19,7 @@ program
 
 const opts = program.opts();
 
-let uri = `https://raw.githubusercontent.com/dbcls/togosite/${opts.branch}/config/togosite-human/`;
+let uri = `https://raw.githubusercontent.com/togodx/togodx-config-human/${opts.branch}/config/`;
 if (opts.js) {
   uri = `https://cdn.jsdelivr.net/gh/dbcls/togosite@${opts.branch}/config/togosite-human/`;
 }
