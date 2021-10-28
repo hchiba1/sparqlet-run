@@ -28,7 +28,7 @@ if (opts.aggregate) {
 } else if (opts.metastanza) {
   uri += 'templates.json';
 } else {
-  uri += 'properties.json';
+  uri += 'properties.server.json';
 }
 
 if (opts.debug) {
@@ -75,7 +75,7 @@ function extractUrl(html) {
   const lines = html.split('\n');
   lines.forEach((line) => {
     if (/(http|https):\/\//.test(line)) {
-      console.log(line.trim());
+      console.log(line.trim().replace(/^.*\/api\//, '').replace('?', ' ?'));
     }
   });
 }
