@@ -69,15 +69,15 @@ function printMetastanza(json) {
       extractUrl(syncRequest('GET', url).getBody('utf8'));
     }
   });  
-}
 
-function extractUrl(html) {
-  const lines = html.split('\n');
-  lines.forEach((line) => {
-    if (/(http|https):\/\//.test(line)) {
-      console.log(line.trim().replace(/^.*\/api\//, '').replace('?', ' ?'));
-    }
-  });
+  function extractUrl(html) {
+    const lines = html.split('\n');
+    lines.forEach((line) => {
+      if (/(http|https):\/\//.test(line)) {
+        console.log(line.trim().replace(/^.*\/api\//, '').replace('?', ' ?'));
+      }
+    });
+  }
 }
 
 function printList(json) {
