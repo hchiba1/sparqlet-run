@@ -12,15 +12,17 @@ program
 
 const opts = program.opts();
 
-let sparqlet_name = 'homologene_category';
+let sparqlet_name = 'gene_evolutionary_conservation_homologene';
 if (program.args.length >= 1) {
   sparqlet_name = program.args[0];
   sparqlet_name = sparqlet_name.replace(/\.md$/, '');
 }
 
-let uri = 'https://integbio.jp/togosite/sparqlist/-api/sparqlets/' + sparqlet_name;
+// let uri = 'https://integbio.jp/togosite/sparqlist/-api/sparqlets/' + sparqlet_name;
+let uri = 'https://togodx.integbio.jp/sparqlist_dev/-api/sparqlets/' + sparqlet_name;
 if (opts.run) {
-  uri = 'https://integbio.jp/togosite/sparqlist/api/' + sparqlet_name;
+  // uri = 'https://integbio.jp/togosite/sparqlist/api/' + sparqlet_name;
+  uri = 'https://togodx.integbio.jp/sparqlist_dev/api/' + sparqlet_name;
 }
 if (opts.quit) {
   console.log(uri);
