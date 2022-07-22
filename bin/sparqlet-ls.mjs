@@ -12,7 +12,7 @@ program
   .option('-s, --show-ep', 'show target endpoint')
   .option('-j, --json', 'show config in JSON')
   .option('-v, --verbose', 'verbose')
-  .option('-b, --branch <branch>', 'branch', 'develop')
+  .option('-b, --branch <branch>', 'branch', 'db84d81')
   .option('-d, --debug', 'show URI and quit')
   .option('--js', 'use jsdelivr instead of raw.githubusercontent')
   .parse(process.argv);
